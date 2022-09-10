@@ -3,7 +3,7 @@ pipeline {
     environment {
         PROJECT_ID = 'beaming-force-358817'
         CLUSTER_NAME = 'gke'
-        LOCATION = 'us-central1-c'
+        LOCATION = 'us-central1'
         CREDENTIALS_ID = 'gke'
     }
     stages {
