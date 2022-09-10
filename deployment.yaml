@@ -53,7 +53,7 @@ spec:
     spec:
       serviceAccountName: hello
       containers:
-      - image: docker.io/kennethreitz/httpbin
+      - image: nixonlauture/hello:latest
         imagePullPolicy: IfNotPresent
         name: hello
         ports:
