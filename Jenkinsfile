@@ -41,15 +41,9 @@ pipeline {
                 }
             }
         }
-        stage('Push Image') {
-        steps {
-            script {
-                docker.withRegistry('https://gcr.io', 'gcr:gke') {
-                    myapp.push()
-                }
-            }
-        }
-    }
+        stage('publish gcloud') {
+    sh "gcloud docker -- push us.gcr.io/us-east4-docker.pkg.dev/beaming-force-358817/testing"
+}
 
         stage('Deploy to GKE') {
             steps{
