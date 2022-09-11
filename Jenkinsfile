@@ -41,15 +41,7 @@ pipeline {
                 }
             }
         }
-   stage('Build image to push in GCR') {
-       app = docker.build("beaming-force-358817/hello")
-     }
-        stage('Push image') {
-        docker.withRegistry('https://eu.gcr.io', 'gcr:gke') {
-        app.push("${env.BUILD_NUMBER}")
-        app.push("latest")
-  }
-}
+
         stage('Deploy to GKE') {
             steps{
                 sh "sed -i 's/hello:latest/hello:${env.BUILD_ID}/g' deployment.yaml"
