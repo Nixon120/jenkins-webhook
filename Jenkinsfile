@@ -42,13 +42,14 @@ pipeline {
             }
         }
         stage("Pushing ECR Image to GCR") {
-      steps {
-        script {
-          withDockerRegistry([CREDENTIALS_ID: "gcr:${params.GCP_PROJECT_ID}", url: "https://gcr.io"]) {
-            sh "docker push gcr.io/${params.GCP_PROJECT_ID}/${params.GCR_IMAGE_NAME}:${params.GCR_IMAGE_TAG}"
+          steps {
+            script {
+                withDockerRegistry([CREDENTIALS_ID: "gcr:${params.GCP_PROJECT_ID}", url: "https://gcr.io"]) {
+                sh "docker push gcr.io/${params.GCP_PROJECT_ID}/${params.GCR_IMAGE_NAME}:${params.GCR_IMAGE_TAG}"
           }
         }
       }
+        }
 
         stage('Deploy to GKE') {
             steps{
