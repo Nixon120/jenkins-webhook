@@ -41,6 +41,15 @@ pipeline {
                 }
             }
         }
+        stage('Push image to Google Container Registry') {
+           steps {
+                container('docker') {
+                withDockerRegistry([ credentialsId: "gcr", url: "https://gcr.io" ]) {
+                sh "docker push ${IMAGE_NAME}:${GIT_COMMIT[0..6]}"
+                   }
+               }
+           }
+       }
         stage('Deploy to GKE') {
             steps{
                 sh "sed -i 's/hello:latest/hello:${env.BUILD_ID}/g' deployment.yaml"
