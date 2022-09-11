@@ -21,7 +21,7 @@ pipeline {
         }
         stage("Sonar Scan") { 
             steps {
-                sh "sonar-scanner \
+                sh "sonarqube-scanner \
                    -Dsonar.projectKey=sonar \
                    -Dsonar.sources=. \
                    -Dsonar.host.url=http://192.168.1.56:9000 \
