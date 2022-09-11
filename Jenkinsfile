@@ -19,14 +19,16 @@ pipeline {
                 }
             }
         }
-        stage('SonarQube analysis') {
-           steps {
-        withSonarQubeEnv('sonarqube') { 
-              sh "mvn sonar:sonar"
-               }
-           }
+        stage("Sonar Scan") { 
+            steps {
+                sh "sonar-scanner \
+                   -Dsonar.projectKey=sonar \
+                   -Dsonar.sources=. \
+                   -Dsonar.host.url=http://192.168.1.56:9000 \
+                   -Dsonar.login=sonar"
+            }
         }
-
+        
         stage ("lint dockerfile") {
             steps {
                 sh '/bin/hadolint Dockerfile | tee -a hadolint_lint.txt'
