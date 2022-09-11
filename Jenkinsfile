@@ -19,6 +19,14 @@ pipeline {
                 }
             }
         }
+        stage('SonarQube analysis') {
+           steps {
+        withSonarQubeEnv('sonarqube-8.9') { 
+              sh "mvn sonar:sonar"
+               }
+           }
+        }
+
         stage ("lint dockerfile") {
             steps {
                 sh '/bin/hadolint Dockerfile | tee -a hadolint_lint.txt'
