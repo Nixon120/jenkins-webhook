@@ -19,6 +19,17 @@ pipeline {
                 }
             }
         }
+        stage ("lint dockerfile") {
+            steps {
+                sh '/bin/hadolint Dockerfile | tee -a hadolint_lint.txt'
+            }
+            post {
+        always {
+            archiveArtifacts 'hadolint_lint.txt'
+         }
+       }
+    }
+
         stage("Push image") {
             steps {
                 script {
