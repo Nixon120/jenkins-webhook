@@ -41,16 +41,15 @@ pipeline {
                 }
             }
         }
-        stage("Pushing ECR Image to GCR") {
-          steps {
+        stage('Push Image') {
+        steps {
             script {
-                withDockerRegistry([CREDENTIALS_ID: "gcr:${params.GCP_PROJECT_ID}", url: "https://gcr.io"]) {
-                myapp.push("latest")
-                myapp.push("${env.BUILD_ID}")
-          }
+                docker.withRegistry('https://gcr.io', 'gcr:CREDENTIALS_ID') {
+                    myapp.push()
+                }
+            }
         }
-      }
-     }
+    }
 
         stage('Deploy to GKE') {
             steps{
