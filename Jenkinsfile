@@ -1,11 +1,6 @@
 pipeline {
     agent any
-    environment {
-        PROJECT_ID = 'beaming-force-358817'
-        CLUSTER_NAME = 'gke'
-        LOCATION = 'us-central1'
-        CREDENTIALS_ID = 'gke'
-    }
+    
     stages {
         stage("Checkout code") {
             steps {
