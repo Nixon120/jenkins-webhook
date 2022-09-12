@@ -15,7 +15,7 @@ pipeline {
         stage("Build image") {
             steps {
                 script {
-                    myapp = docker.build("nixonlauture/hello:${env.BUILD_ID}")
+                    myapp = docker.build("us-east4-docker.pkg.dev/beaming-force-358817/testing/nixonlauture/hello:${env.BUILD_ID}")
                 }
             }
         }
