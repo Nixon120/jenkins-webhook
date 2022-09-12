@@ -41,15 +41,6 @@ pipeline {
                 }
             }
         }
-        stage('Push images') {
-            steps {
-                script {
-                    - docker build -t gcr.io/us-east4-docker.pkg.dev/beaming-force-358817/testing/myapp:latest .
-                    - docker push gcr.io/us-east4-docker.pkg.dev/beaming-force-358817/testing/myapp:latest
-                   }
-            }
-        }
-           
       
 
         stage('Deploy to GKE') {
