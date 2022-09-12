@@ -44,9 +44,8 @@ pipeline {
         stage('Push images') {
             steps {
                 script {
-                   docker.withRegistry('https://us.gcr.io', 'gcr:us-east4-docker.pkg.dev/beaming-force-358817/testing') {
-                         myapp.push("${env.BUILD_ID}")
-                        myapp.push("latest")
+                    - docker build -t gcr.io/us-east4-docker.pkg.dev/beaming-force-358817/testing/myapp:latest .
+                    - docker push gcr.io/us-east4-docker.pkg.dev/beaming-force-358817/testing/myapp:latest
                    }
                 }
             }
