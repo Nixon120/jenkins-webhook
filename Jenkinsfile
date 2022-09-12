@@ -36,6 +36,16 @@ pipeline {
                 }
             }
         }
+        stage('Build Container Image') {
+         
+            steps {
+                unstash 'dist'
+                sh "docker build . -t gcr.io/beaming-force-358817/gke-gcr:hello"
+                sh "gcloud docker -- push gcr.io/beaming-force-358817/gke-gcr:hello"
+                sh "gcloud container images add-tag gcr.io/beaming-force-358817/gke-gcr:hello gcr.io/beaming-force-358817/gke-gcr:hello"
+            }
+        }
+    
       
 
         stage('Deploy to GKE') {
