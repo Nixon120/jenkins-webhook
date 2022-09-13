@@ -1,4 +1,7 @@
 pipeline {
+     environment {
+    CREDENTIALS_ID = 'gke'
+  }
     agent any
     
     stages {
