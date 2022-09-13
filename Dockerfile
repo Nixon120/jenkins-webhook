@@ -1,23 +1,14 @@
-#FROM bitnami/node:9 as builder
-#ENV NODE_ENV="production"
+FROM ubuntu:16.04
 
-# Copy app's source code to the /app directory
-#COPY . /app
+MAINTAINER Chris Fidao
 
-# The application's directory will be the working directory
-#WORKDIR /app
+RUN apt-get update \
+    && apt-get install -y nginx \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
+    && echo "daemon off;" >> /etc/nginx/nginx.conf
 
-# Install Node.js dependencies defined in '/app/packages.json'
-#RUN npm install
+ADD default /etc/nginx/sites-available/default
 
-#FROM bitnami/node:9-prod
-FROM nginx:latest
-ENV NODE_ENV="production"
-COPY ./index.html /usr/share/nginx/html/index.html
-#COPY --from=builder /app /app
-WORKDIR /app
-ENV PORT 5000
-EXPOSE 5000
-
-# Start the application.
-CMD ["npm", "start"]
+EXPOSE 80
+CMD ["nginx"]
