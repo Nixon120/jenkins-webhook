@@ -10,7 +10,7 @@ pipeline {
         stage("Build image") {
             steps {
                 script {
-                    myapp = docker.build("nixonlauture/hello:${env.BUILD_ID}")
+                    myapp = docker.build("beaming-force-358817/hello:${env.BUILD_ID}")
                 }
             }
         }
@@ -29,9 +29,9 @@ pipeline {
         stage("Push image") {
             steps {
                 script {
-                    docker.withRegistry('https://registry.hub.docker.com', 'dockerhub') {
+                    docker.withRegistry('https://gcr.io', 'gcr: CRENTIALS_ID') {
                             myapp.push("latest")
-                            myapp.push("${env.BUILD_ID}")
+                      
                     }
                 }
             }
