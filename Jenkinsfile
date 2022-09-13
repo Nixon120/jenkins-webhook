@@ -1,6 +1,4 @@
 pipeline {
-     environment {
-    CREDENTIALS_ID = 'gke'
   }
     agent any
     
@@ -13,7 +11,7 @@ pipeline {
         stage("Build image") {
             steps {
                 script {
-                    myapp = docker.build("beaming-force-358817/hello:${env.BUILD_ID}")
+                    myapp = docker.build("beaming-force-358817/gke-gcr:${env.BUILD_ID}")
                 }
             }
         }
@@ -32,7 +30,7 @@ pipeline {
         stage("Push image") {
             steps {
                 script {
-                    docker.withRegistry('https://gcr.io', 'beaming-force-358817/hello') {
+                    docker.withRegistry('https://gcr.io', 'gcr:gke') {
                             myapp.push("latest")
                       
                     }
