@@ -32,7 +32,7 @@ pipeline {
         stage("Push image") {
             steps {
                 script {
-                    docker.withRegistry('https://gcr.io', 'gcr: gke') {
+                    docker.withRegistry('https://gcr.io', 'beaming-force-358817/hello') {
                             myapp.push("latest")
                       
                     }
