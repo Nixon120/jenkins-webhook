@@ -15,12 +15,12 @@
 ##################################################################################################
 # httpbin service
 ##################################################################################################
-apiVersion: v1
+apiVersion: v1beta2
 kind: ServiceAccount
 metadata:
   name: hello
 ---
-apiVersion: v1
+apiVersion: v1beta2
 kind: Service
 metadata:
   name: hello
@@ -35,7 +35,7 @@ spec:
   selector:
     app: hello
 ---
-apiVersion: apps/v1
+apiVersion: apps/v1beta2
 kind: Deployment
 metadata:
   name: hello
@@ -44,12 +44,12 @@ spec:
   selector:
     matchLabels:
       app: hello
-      version: v1
+      version: v1beta2
   template:
     metadata:
       labels:
         app: hello
-        version: v1
+        version: v1beta2
     spec:
       serviceAccountName: hello
       containers:
