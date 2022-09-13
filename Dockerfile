@@ -10,9 +10,11 @@
 # Install Node.js dependencies defined in '/app/packages.json'
 #RUN npm install
 
-FROM bitnami/node:9-prod
+#FROM bitnami/node:9-prod
+FROM nginx:latest
 ENV NODE_ENV="production"
-COPY --from=builder /app /app
+COPY ./index.html /usr/share/nginx/html/index.html
+#COPY --from=builder /app /app
 WORKDIR /app
 ENV PORT 5000
 EXPOSE 5000
