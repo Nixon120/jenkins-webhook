@@ -15,12 +15,12 @@
 ##################################################################################################
 # httpbin service
 ##################################################################################################
-apiVersion: v1
+apiVersion: apps/v1
 kind: ServiceAccount
 metadata:
   name: hello
 ---
-apiVersion: v1
+apiVersion: apps/v1
 kind: Service
 metadata:
   name: hello
