@@ -54,7 +54,7 @@ spec:
       serviceAccountName: hello
       containers:
       #- image: nixonlauture/hello:latest
-      - image: beaming-force-358817/hello:latest
+      - image: gcr.io/beaming-force-358817/hello:latest
         imagePullPolicy: IfNotPresent
         name: hello
         ports:
