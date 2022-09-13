@@ -32,7 +32,7 @@ pipeline {
                 script {
                     docker.withRegistry('https://gcr.io', 'gcr:gke') {
                             myapp.push("latest")
-                            myapp.push("${env.BUILD_ID}")
+                            
                     }
                 }
             }
